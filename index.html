@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lightgallery.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lightgallery-bundle.min.css'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/lightgallery.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/plugins/zoom/lg-zoom.min.js"></script>
+
+
+
+    <style>
+        html,
+        body {
+            position: relative;
+            height: 99%;
+        }
+
+        body {
+            background: #eee;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .swiper-slide {
+            height: 100%;
+            width: auto;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        .swiper-image {
+            display: block;
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+        }
+
+        .lg-outer .lg-content {
+            top: 16px !important;
+            bottom: 16px !important;
+        }
+
+        .lg-backdrop {
+            background-color: #eee !important; 
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Slider main container -->
+    <div class="swiper" id="swiper-container">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+                <img class="swiper-image" src="1.gif" alt="Image 1">
+            </div>
+            <div class="swiper-slide">
+                <img class="swiper-image" src="2.gif" alt="Image 2">
+            </div>
+        </div>
+    
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    
+        <!-- If we need scrollbar -->
+        <div class="swiper-scrollbar"></div>
+    </div>
+
+    <script>
+        const swiper = new Swiper('.swiper', {
+            slidesPerView: 1,
+
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+
+            // And if we need scrollbar
+            scrollbar: {
+                el: '.swiper-scrollbar',
+            },
+        });
+
+        const $lgContainer = document.getElementById("swiper-container");
+
+        const lg = lightGallery($lgContainer, {
+            speed: 500,
+            download: false,
+            showZoomInOutIcons: true,
+            actualSize: false,
+                controls: true,
+                selector: '.swiper-slide > img',
+            plugins: [lgZoom]
+        });
+    </script>
+</body>
+
+</html>
